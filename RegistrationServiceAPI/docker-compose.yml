@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: MongoDB2019!
+    ports:
+      - "27017:27017"
+    volumes:
+      - MongoDB:/data/db
+    networks:
+      - mongo-compose-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq_management
+               
+    ports: 
+      - 5672:5672 # (erlang) communication between the nodes and CLI tool
+      - 15672:15672 # communication with the web management API 
+               
+    volumes:
+    # data persistence
+      - RabbitMQ:/data/rabbitmq/
+    # data mapping -> host: container
+    # queues and messages data of the container will be stored on the host
+    environment:
+      - RABBITMQ_DEFAULT_USER = admin
+      - RABBITMQ_DEFAULT_PASS = admin
+
+    restart: always
+
+volumes:
+    MongoDB:
+    RabbitMQ:
+
+networks: 
+    mongo-compose-network:
+      driver: bridge
