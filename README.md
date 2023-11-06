@@ -13,9 +13,9 @@ Preencha com essas informações:
 * Login: guest
 * Senha: guest
 
-## Worker 
+## EmailSendingService 
 
-Após o preenchimento do formulário na aplicação web, rode o Worker e acompanhe o consumo da mensagem e envio do e-mail.
+Após o preenchimento do formulário na aplicação web, rode o EmailSendingService e acompanhe o consumo da mensagem e envio do e-mail.
 
 ### Utilizando o NoSQLBooster for MongoDB
 
